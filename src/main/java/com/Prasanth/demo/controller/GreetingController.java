@@ -14,4 +14,9 @@ public class GreetingController {
     	System.out.println("Hello server");
         return "hello prasanth";
     }
+    
+    @GetMapping("/hello")
+    public String sayFuckOff() {
+        return "fuckoff";
+    }
 }
