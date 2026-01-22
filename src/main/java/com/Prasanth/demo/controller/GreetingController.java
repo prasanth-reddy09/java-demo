@@ -12,7 +12,7 @@ public class GreetingController {
     @GetMapping("/")
     public String sayHello() {
     	System.out.println("Hello server");
-        return "hello prasanth";
+        return "hello prasanth v2";
     }
     
     @GetMapping("/hello")
