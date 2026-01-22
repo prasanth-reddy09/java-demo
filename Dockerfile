@@ -1,5 +1,5 @@
-# 1. Use Java 21 JDK for the build process
-FROM openjdk:21-jdk-slim AS build
+# 1. Use Java 21 JDK for the build process (Using Temurin/Alpine)
+FROM eclipse-temurin:21-jdk-alpine AS build 
 
 # 2. Set the working directory inside the container
 WORKDIR /app
@@ -11,11 +11,10 @@ COPY pom.xml .
 COPY src src
 
 # 4. Build the JAR file using the Maven Wrapper
-# (Ensure 'demo-0.0.1-SNAPSHOT.jar' is correct)
 RUN ./mvnw clean package -DskipTests
 
-# 5. Define the final runtime environment (Java 21 JRE)
-FROM openjdk:21-jre-slim
+# 5. Define the final runtime environment (Java 21 JRE, using Temurin/Alpine)
+FROM eclipse-temurin:21-jre-alpine
 
 # 6. Copy only the final runnable JAR from the build stage
 COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar app.jar
